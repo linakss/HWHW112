@@ -1,17 +1,29 @@
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
-public class Main {
-    public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
-
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
-
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
+import java.util.regex.*;
+public class Main{
+    public static void main(String[] args) throws Exception{
+        try{
+            FileReader fr = new FileReader("C:\\Users\\User\\IdeaProjects\\HW112\\src\\main\\java\\ocenki.txt");
+            Scanner scan = new Scanner(fr);
+            double sredn=0;
+            int ocenka =0;
+            int j = 0;
+            System.out.println("Ученики, чья оценка меньше 3 баллов:");
+            while(scan.hasNext()) {
+                j++;
+                String s1=scan.nextLine();
+                ocenka=Integer.parseInt(s1.replaceAll("\\D",""));
+                sredn+=ocenka;
+                if(ocenka<3) {
+                    System.out.println(s1);
+                }}
+            sredn/=j;
+            fr.close();
+            System.out.println("Средний балл по классу:"+sredn);
+        } catch(IOException ex){
+            System.out.println(ex.getMessage());
         }
     }
 }
